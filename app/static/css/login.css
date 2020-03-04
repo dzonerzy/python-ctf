@@ -1,0 +1,27 @@
+
+/* BASIC */
+
+html {
+    background-color: #56baed;
+}
+
+body {
+   /*font-family: "Poppins", sans-serif;*/
+    height: 100vh;
+}
+
+.form-gap {
+    padding-top: 70px;
+}
+
+.card-header h3.mb-0 {
+  text-align-last: justify
+}
+
+
+.form-icon {
+    float: right;
+    display: inline-block;
+    font-size: 0.75rem;
+}
+

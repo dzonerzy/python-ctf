@@ -1,0 +1,232 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Restricted Area</title>
+    <link rel="icon" href="{{ url_for('static', filename='icon/favicon.ico') }}" type="image/x-icon">
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/login.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/fontawesome.all.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/alertify.min.css') }}" rel="stylesheet">
+    <script src="{{ url_for('static', filename='js/alertify.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+    <link href="{{ url_for('static', filename='css/alertify.bootstrap.min.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="form-gap"></div>
+                <div class="card card-outline-secondary">
+                    <div class="card-header">
+                        <h3 class="mb-0">
+                            {% if task == 'login' %}
+                            Login <i class="fas fa-lock"></i>
+                            {% elif task == 'create' %}
+                            Register
+                            {% elif task in ['forgot', 'reset-code', 'reset-user-pwd'] %}
+                            Reset <i class="fa fa-key"></i>
+                            {% endif %}
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        {% if task == 'login' %}
+                        <form class="form" role="form" autocomplete="off" action="login" novalidate="" method="POST">
+                        {% elif task == 'create' %}
+                        <form class="form" role="form" autocomplete="off" action="create-account" novalidate="" method="POST">
+                        {% elif task == 'forgot' %}
+                        <form class="form" role="form" autocomplete="off" action="reset-code" novalidate="" method="POST">
+                        {% elif task == 'reset-code' %}
+                        <form class="form" role="form" autocomplete="off" action="reset-user-step2" novalidate="" method="POST">
+                        {% elif task == 'reset-user-pwd' %}
+                        <form class="form" role="form" autocomplete="off" action="reset" novalidate="" method="POST">
+                        {% endif %}
+                            {% if task == 'login' %}
+                            <div class="form-group">
+                                <label for="usr">Username</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-user"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control" id="usr" name="usr" placeholder="Username" aria-label="Username">
+                                </div>
+                                <div class="invalid-feedback">Please enter your username</div>
+                            </div>
+                            <div class="form-group">
+                                <label  for="pwd">Password</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-key"></i>
+                                        </span>
+                                    </div>
+                                    <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Password" aria-label="Password">
+                                </div>
+                                <div class="invalid-feedback">Please enter a password</div>
+                                <span id="help" class="form-text small text-muted">
+                                    <b>*</b><i>Stay safe!</i>
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-lg float-right" id="btnLogin">Login</button>
+                            </div>
+                            {% elif task == 'create' %}
+                            <div class="form-group">
+                                <label  for="usr">Username</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-user"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control" id="usr" name="usr" placeholder="Username" aria-label="Username">
+                                </div>
+                                <div class="invalid-feedback">Please enter a username</div>
+                            </div>
+                            <div class="form-group">
+                                <label  for="enl">Phone</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-phone"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control" id="enl" name="phone" placeholder="Phone number" aria-label="Phone number">
+                                </div>
+                                <div class="invalid-feedback">Please enter a Phone number</div>
+                                <span id="helpPhone" class="form-text small text-muted">
+                                    <b>*</b><i>If you need a phone number use our virtual phone service <a href="virtual-phone">here</a></i>
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label  for="pwd">Password</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-key"></i>
+                                        </span>
+                                    </div>
+                                    <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Password" aria-label="Password">
+                                </div>
+                                <div class="invalid-feedback">Please enter a Password</div>
+                            </div>
+                            <div class="form-group">
+                                <label  for="pwd2">Verify Password</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-key"></i>
+                                        </span>
+                                    </div>
+                                    <input type="password" class="form-control" id="pwd2" name="pwd2" placeholder="Password" aria-label="Password">
+                                </div>
+                                <div class="invalid-feedback">Please enter a Password</div>
+                            </div>
+                            <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-lg float-right">Register</button>
+                            </div>
+                            {% elif task == 'forgot' %}
+                            <div class="form-group">
+                                <label  for="pwd2">Username</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-user"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control" id="usr" name="usr" placeholder="Username" aria-label="Username">
+                                </div>
+                                <div class="invalid-feedback">Please enter a Password</div>
+                                <span id="helpResetPasswordEmail" class="form-text small text-muted">
+                                    Password reset instructions will be sent to the phone number linked to this account.
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-lg float-right">Reset</button>
+                            </div>
+                            {% elif task == 'reset-code' %}
+                            <div class="form-group">
+                                <label  for="pwd2">One Time Password</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-key"></i>
+                                        </span>
+                                    </div>
+                                    <input type="password" class="form-control" id="code" name="code" placeholder="OTP" aria-label="OTP">
+                                    <div class="input-group-append">
+                                        <button type="button" id="send-code" class="btn btn-outline-primary">Send Code</button>
+                                    </div>
+                                </div>
+                                <div class="invalid-feedback">Please enter the OTP</div>
+                                <span id="helpResetCode" class="form-text small text-muted">
+                                    Please insert the OTP you received via SMS
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-lg float-right">Check</button>
+                            </div>
+                            {% elif task == 'reset-user-pwd' %}
+                            <div class="form-group">
+                                <label  for="usr">Username</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-user"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control" id="usr"  value="{{ user }}" name="usr" placeholder="Username" aria-label="Username" disabled="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label  for="pwd">New Password</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-key"></i>
+                                        </span>
+                                    </div>
+                                    <input type="password" class="form-control" id="pwd" name="pwd" placeholder="New Password" aria-label="New Password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-lg float-right">Reset Password</button>
+                            </div>
+                            {% endif %}
+                        </form>
+                    </div>
+                    <div class="card-footer text-muted">
+                        {% if task == 'login' %}
+                        <div class="row">
+                            <div class="text-center col-md-6">
+                                <a href="/forgot">Forgot password?</a>
+                            </div>
+                            <div class="text-center col-md-6">
+                                <a href="/create">Sign-up</a>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="row">
+                            <div class="text-center col-md-6 offset-md-3">
+                                <a href="/login">Back to login</a>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if error %}
+    <script>
+        alertify.error('{{ error }}', 5);
+    </script>
+    {% endif %}
+</body>
+
+</html>

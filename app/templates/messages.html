@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Messages</title>
+    <link rel="icon" href="{{ url_for('static', filename='icon/favicon.ico') }}" type="image/x-icon">
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/fontawesome.all.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark static-top">
+    <div class="container d-flex justify-content-center">
+        <span class="navbar-brand" >
+        <i class="fa d-inline fa-lg fa-phone" style=""></i>
+        <b>Virtual Phone Number ( {{ phone }} )</b>
+      </span>
+    </div>
+</nav>
+<div class="top-margin"></div>
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-md-auto">
+            <div class="top-smartphone">
+                <div class="top-bar-smartphone">
+                    <div class="row justify-content-md-center h-100">
+                        <div class="col-md-8 my-auto">
+                            <b>9:41</b>
+                        </div>
+                        <div class="col-md-1 my-auto">
+                            <i class="fa fa-signal"></i>
+                        </div>
+                        <div class="col-md-1 my-auto">
+                            <i class="fa fa-wifi"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-smartphone">
+                    <div class="row justify-content-md-center">
+                        <h6>Messages <span id="message_count" class="badge badge-pill badge-primary ml-2">{{ message_count }}</span></h6>
+                    </div>
+                    <div class="messages row">
+                        <div class="messages-scrollable">
+                            {% for message in messages %}
+                            <div class="message">
+                                <div class="row message-header border-bottom">
+                                    <div class="col-md-6 h-100 border-right">
+                                           <small><b>From</b>: {{ message.from_num }}</small>
+                                    </div>
+                                    <div class="col-md-6 h-100 border-left">
+                                           <small><b>Date</b>: {{ message.get_formatted_date }}</small>
+                                    </div>
+                                </div>
+                                <div class="message-body">
+                                    {{ message.content }}
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <img src="{{ url_for('static', filename='images/smartphone.png') }}" width="550px"><br>
+            <div class="row justify-content-md-center">
+                <span>Please refresh page to show new messages</span>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

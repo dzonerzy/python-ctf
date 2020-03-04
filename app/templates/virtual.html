@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{{ url_for('static', filename='icon/favicon.ico') }}" type="image/x-icon">
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/fontawesome.all.min.css') }}" rel="stylesheet">
+    <script src="{{ url_for('static', filename='js/virtual.js') }}"></script>
+</head>
+
+<body style="">
+  <nav class="navbar navbar-dark bg-dark static-top">
+    <div class="container d-flex justify-content-center"> <a class="navbar-brand" href="#">
+        <i class="fa d-inline fa-lg fa-phone" style=""></i>
+        <b>Virtual Phone Number</b>
+      </a> </div>
+  </nav>
+  <div class="py-5 text-center text-white" style="height: 90vh; background-image: linear-gradient(to bottom, rgba(0, 0, 0, .75), rgba(0, 0, 0, .75)), url(https://static.pingendo.com/cover-bubble-dark.svg);	background-position: center center, center center;	background-size: cover, cover;	background-repeat: repeat, repeat;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 mx-auto">
+          <h1 class="mb-3">Register Everywhere</h1>
+          <p class="lead mb-0">Free virtual phone numbers with a one click!</p>
+            <form action="get-number" method="post">
+                <input type="submit" class="btn btn-primary m-3" value="Get a number">
+            </form>
+            <img class="img-fluid d-block mx-auto" src="{{ url_for('static', filename='images/otp.png') }}" width="70%">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-1">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <p class="mb-0">© 2019-2020 DZONERZY. All rights reserved</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

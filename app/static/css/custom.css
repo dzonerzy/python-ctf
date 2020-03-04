@@ -1,0 +1,73 @@
+.top-margin {
+    padding-top: 40px;
+}
+
+.top-smartphone {
+    position: absolute;
+    left: 117px;
+    top: 23px;
+    width: 350px;
+    height: 757px;
+    border-radius: 36px;
+}
+
+.top-bar-smartphone {
+    width: 100%;
+    height: 40px;
+    border-bottom: 1px solid #444;
+    color: #444;
+    background-color: rgba(30,30,30,0.3);
+    border-top-right-radius: 38px;
+    border-top-left-radius: 38px;
+}
+
+.content-smartphone {
+    z-index: -1;
+    width: 100%;
+    height: 717px;
+    /*background-color: rgba(24,50,198,0.08);*/
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    border-bottom-left-radius: 36px;
+    border-bottom-right-radius: 36px;
+}
+
+.my-auto {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.messages{
+    overflow: hidden;
+    position:relative;
+    height: 646px;
+}
+
+.messages-scrollable {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: -15px;
+    overflow-y: auto;
+    word-wrap: break-word;
+}
+
+.message {
+    overflow: hidden;<
+    padding-right: 15px;
+    border-bottom: 1px solid #999;
+}
+
+.message-header {
+    padding: 2px;
+}
+
+.border-bottom {
+    border: 1px solid #999 !important;
+}
+
+.message-body {
+    padding: 5px;
+}
